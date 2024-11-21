@@ -77,8 +77,10 @@ class MainActivity : AppCompatActivity() {
 
                 checkBox = findViewById(R.id.chkVisto)
                 println("has pulsado el check: ${recordatorio.vista}")
-                var mycheck = false
-                mycheck= checkBox.isChecked
+
+                val mycheck= checkBox.isChecked
+
+
 
                 if (mycheck)
                 {
