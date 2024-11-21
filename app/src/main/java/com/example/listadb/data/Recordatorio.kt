@@ -1,6 +1,6 @@
 package com.example.listadb.data
 
-data class Recordatorio(val id: Int, val nombre: String, val vista: Boolean){
+data class Recordatorio(val id: Int, val nombre: String, var vista: Boolean){
 
 
     // Constructor secundario sin el 'id', útil cuando el 'id' es autoincremental

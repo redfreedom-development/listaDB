@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         //nada mas empezar la app buscamos todos los registros de la BBDD
        recordatorios = dao.findAll()
 
@@ -61,9 +62,27 @@ class MainActivity : AppCompatActivity() {
             onDeleteClick = { recordatorio ->
                 // Manejo del clic en el botón de eliminar
                 println("Eliminar recordatorio: ${recordatorio.id}")
+                dao.deleteById(recordatorio)
+                actualizar_datos_recyclerView()
 
 
                 // Lógica para eliminar el recordatorio de la lista o base de datos
+            },
+            onUpdateCheckBox = {recordatorio->
+
+                checkBox = findViewById(R.id.chkVisto)
+                println("has pulsado el check: ${recordatorio.vista}")
+                var mycheck = false
+                mycheck= checkBox.isChecked
+
+                if (mycheck)
+                {
+                    recordatorio.vista=true
+                }else{
+                    recordatorio.vista=false
+                }
+                dao.update(recordatorio)
+
             }
         )
 

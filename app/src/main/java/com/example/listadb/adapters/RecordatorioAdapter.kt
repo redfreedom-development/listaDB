@@ -13,7 +13,8 @@ import com.example.listadb.data.Recordatorio
 class RecordatorioAdapter(
     private var recordatorios: List<Recordatorio>,
     private val onItemClick: (Recordatorio) -> Unit,
-    private val onDeleteClick: (Recordatorio) -> Unit
+    private val onDeleteClick: (Recordatorio) -> Unit,
+    private val onUpdateCheckBox: (Recordatorio) -> Unit
 ) : RecyclerView.Adapter<RecordatorioAdapter.RecordatorioViewHolder>() {
 
     // Clase interna para definir el ViewHolder
@@ -21,6 +22,7 @@ class RecordatorioAdapter(
         val pelicula: TextView = itemView.findViewById(R.id.nombrePelicula)
         val visto: CheckBox = itemView.findViewById(R.id.chkVisto)
         val botonBorrar: ImageButton = itemView.findViewById(R.id.botonBorrar)
+        val checkBox : CheckBox = itemView.findViewById(R.id.chkVisto)
 
     }
 
@@ -36,6 +38,7 @@ class RecordatorioAdapter(
 
         val recordatorio = recordatorios[position]
         holder.pelicula.text = recordatorio.nombre
+        holder.checkBox.isChecked=recordatorio.vista
 
 
         // Manejar clics en el ítem
@@ -44,6 +47,12 @@ class RecordatorioAdapter(
         // Establecer el clic para el botón de eliminar
         holder.botonBorrar.setOnClickListener {
             onDeleteClick(recordatorio)
+
+            println(recordatorio.id)
+
+        }
+        holder.checkBox.setOnClickListener{
+            onUpdateCheckBox(recordatorio)
 
         }
     }

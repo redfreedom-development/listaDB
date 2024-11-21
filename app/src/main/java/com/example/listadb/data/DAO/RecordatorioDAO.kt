@@ -44,10 +44,10 @@ class RecordatorioDAO(val context: Context) {
 
         // Create a new map of values, where column names are the keys
         val values = ContentValues().apply {
-            put(Recordatorio.COLUMN_NAME, recordatorio.nombre)
+            //put(Recordatorio.COLUMN_NAME, recordatorio.nombre)
             put(Recordatorio.COLUMN_VISTA, recordatorio.vista)
         }
-
+            println("el check es: ${recordatorio.vista}")
         try {
             // Update the existing rows, returning the number of affected rows
             val updatedRows = db.update(Recordatorio.TABLE_NAME, values, "${Recordatorio.COLUMN_ID} = ${recordatorio.id}", null)
