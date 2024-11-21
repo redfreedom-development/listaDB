@@ -3,7 +3,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadb.R
 import com.example.listadb.activities.MainActivity
@@ -23,6 +25,7 @@ class RecordatorioAdapter(
         val visto: CheckBox = itemView.findViewById(R.id.chkVisto)
         val botonBorrar: ImageButton = itemView.findViewById(R.id.botonBorrar)
         val checkBox : CheckBox = itemView.findViewById(R.id.chkVisto)
+        val itemLayout: LinearLayout = itemView.findViewById(R.id.itemLinearLayout)
 
     }
 
@@ -54,6 +57,15 @@ class RecordatorioAdapter(
         holder.checkBox.setOnClickListener{
             onUpdateCheckBox(recordatorio)
 
+        }
+
+        // Cambia el fondo según la posición (par o impar)
+        if (position % 2 == 0) {
+            // Ítem en posición par (0, 2, 4, ...)
+            holder.itemLayout.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+        } else {
+            // Ítem en posición impar (1, 3, 5, ...)
+            holder.itemLayout.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.celda_impar))
         }
     }
 
